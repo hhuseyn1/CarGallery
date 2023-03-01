@@ -21,7 +21,7 @@
             <ListBox Name="CarsList"></ListBox>
         </Grid>
         <Grid Grid.Row="2" Grid.Column="2">
-            <Button Content="Start" Height="40" FontSize="15" FontWeight="SemiBold"/>
+            <Button Content="Start" Height="35" FontSize="15" FontWeight="SemiBold" BorderThickness="0"/>
         </Grid>
         <Grid Grid.Row="2" Grid.Column="1">
             <Grid.ColumnDefinitions>
@@ -43,6 +43,13 @@
 
             <Grid Grid.Row="0" Grid.Column="2">
                 <TextBlock Text="Multi" FontSize="15" HorizontalAlignment="Left" VerticalAlignment="Center"/>
+            </Grid>
+
+            <Grid Grid.Column="3">
+                <TextBlock Text="Timer:" VerticalAlignment="Center" HorizontalAlignment="Right" FontSize="16"/>
+            </Grid>
+            <Grid Grid.Column="4">
+                <TextBlock Name="Timertxtbox" VerticalAlignment="Center" HorizontalAlignment="Left" FontSize="16"/>
             </Grid>
         </Grid>
     </Grid>
