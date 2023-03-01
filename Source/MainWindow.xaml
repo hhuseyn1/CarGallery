@@ -18,10 +18,41 @@
             <ColumnDefinition/>
         </Grid.ColumnDefinitions>
         <Grid Grid.Row="1" Grid.Column="1">
-            <ListBox Name="CarsList"></ListBox>
+            <ScrollViewer Margin="0,10,0,0" VerticalScrollBarVisibility="Auto">
+                <ItemsControl ItemsSource="{Binding Cars}">
+                    <ItemsControl.ItemTemplate>
+                        <DataTemplate>
+                            <Border Margin="10 " BorderThickness="2" BorderBrush="Black">
+                                <StackPanel Orientation="Horizontal">
+                                    <Image Margin="30 0" Width="100" Height="100" Source="{Binding ImagePath}"></Image>
+                                    <Grid Margin="0 20" >
+                                        <Grid.RowDefinitions>
+                                            <RowDefinition/>
+                                            <RowDefinition/>
+                                            <RowDefinition/>
+                                        </Grid.RowDefinitions>
+                                        <StackPanel Orientation="Horizontal" >
+                                            <TextBlock  Text="Make: "/>
+                                            <TextBlock  Grid.Row="1" Text="{Binding Make}"/>
+                                        </StackPanel>
+                                        <StackPanel Grid.Row="1" Orientation="Horizontal" >
+                                            <TextBlock  Text="Model: "/>
+                                            <TextBlock  Grid.Column="1" Text="{Binding Model}"/>
+                                        </StackPanel>
+                                        <StackPanel Grid.Row="2" Orientation="Horizontal" >
+                                            <TextBlock Text="Year: "/>
+                                            <TextBlock Grid.Column="1" Text="{Binding Year}"/>
+                                        </StackPanel>
+                                    </Grid>
+                                </StackPanel>
+                            </Border>
+                        </DataTemplate>
+                    </ItemsControl.ItemTemplate>
+                </ItemsControl>
+            </ScrollViewer>
         </Grid>
         <Grid Grid.Row="2" Grid.Column="2">
-            <Button Name="CancelBtn" Content="Cancel" Style="{StaticResource ResourceKey=ButtonStyle}" Click="StartBtn_Click"/>
+            <Button Name="CancelBtn" Content="Cancel" Style="{StaticResource ResourceKey=ButtonStyle}" Click="CancelBtn_Click"/>
         </Grid>
         
         <Grid Grid.Row="2" Grid.Column="1">
@@ -55,7 +86,7 @@
             </Grid>
             
             <Grid Grid.Column="6">
-                <Button Name="StartBtn" Content="Start" Style="{StaticResource ResourceKey=ButtonStyle}"/>
+                <Button Name="StartBtn" Content="Start" Style="{StaticResource ResourceKey=ButtonStyle}" Click="StartBtn_Click"/>
             </Grid>
             
             
