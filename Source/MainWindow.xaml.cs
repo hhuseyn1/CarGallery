@@ -19,7 +19,8 @@ public partial class MainWindow : Window
     {
         InitializeComponent();
         DataContext = this;
-        timer.Interval = new TimeSpan(0, 0, 1);
+        Cars = new();
+        CarsList.ItemsSource = Cars;
     }
     private void StartBtn_Click(object sender, RoutedEventArgs e)
     {
@@ -37,7 +38,7 @@ public partial class MainWindow : Window
     }
     private void SingleCars(CancellationToken token)
     {
-        CarsList.Items.Clear();
+        Cars.Clear();
         new Thread(() =>
         {
             var directory = new DirectoryInfo(@"..\..\..\FakeDatas");
@@ -61,7 +62,8 @@ public partial class MainWindow : Window
 
                             Dispatcher.Invoke(() => Cars?.Add(car));
                             Dispatcher.Invoke(() => { Timertxtbox.Text = timer.Interval.ToString(); });
-                            Thread.Sleep(100);
+                            Dispatcher.Invoke(() => { StartBtn.IsEnabled = false; });
+                            Thread.Sleep(200);
                         }
                 }
             }
@@ -71,9 +73,9 @@ public partial class MainWindow : Window
 
     private void MultiCars(CancellationToken token)
     {
+        Cars.Clear();
         var sync = new object();
         var dirInfo = new DirectoryInfo(@"..\..\..\FakeDatas");
-        CarsList.Items.Clear();
         foreach (var file in dirInfo.GetFiles())
         {
             if (file.Extension == ".json")
@@ -95,6 +97,7 @@ public partial class MainWindow : Window
                                 Dispatcher.Invoke(() => Cars?.Add(car));
 
                             Dispatcher.Invoke(() => { Timertxtbox.Text = timer.Interval.ToString(); });
+                            Dispatcher.Invoke(() => { StartBtn.IsEnabled = false; });
                             Thread.Sleep(100);
                         }
                     }

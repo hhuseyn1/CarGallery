@@ -18,7 +18,48 @@
             <ColumnDefinition/>
         </Grid.ColumnDefinitions>
         <Grid Grid.Row="1" Grid.Column="1">
-            <ListBox ItemsSource="{Binding Cars}" Name="CarsList"></ListBox>
+            <ScrollViewer Margin="0,10,0,0" VerticalScrollBarVisibility="Auto">
+            <ItemsControl x:Name="CarsList" ItemsSource="{Binding Cars}">
+                <ItemsControl.ItemsPanel >
+                    <ItemsPanelTemplate>
+                        <WrapPanel ItemWidth="200" ItemHeight="250"/>
+                    </ItemsPanelTemplate>
+                </ItemsControl.ItemsPanel>
+                <ItemsControl.ItemTemplate>
+                    <DataTemplate>
+                        <Border Margin="10 " BorderThickness="2" BorderBrush="Black">
+                            <StackPanel Orientation="Vertical">
+                                <Image Width="100" Height="150" Source="{Binding ImagePath}"></Image>
+                                <Grid>
+                                    <Grid.ColumnDefinitions>
+                                        <ColumnDefinition/>
+                                        <ColumnDefinition/>
+                                    </Grid.ColumnDefinitions>
+                                    <TextBlock Text="Make: "/>
+                                    <TextBlock Grid.Column="1" Text="{Binding Make}"/>
+                                </Grid>
+                                <Grid>
+                                    <Grid.ColumnDefinitions>
+                                        <ColumnDefinition/>
+                                        <ColumnDefinition/>
+                                    </Grid.ColumnDefinitions>
+                                    <TextBlock Text="Model: "/>
+                                    <TextBlock Grid.Column="1" Text="{Binding Model}"/>
+                                </Grid>
+                                <Grid>
+                                    <Grid.ColumnDefinitions>
+                                        <ColumnDefinition/>
+                                        <ColumnDefinition/>
+                                    </Grid.ColumnDefinitions>
+                                    <TextBlock Text="Year: "/>
+                                    <TextBlock Grid.Column="1" Text="{Binding Year}"/>
+                                </Grid>
+                            </StackPanel>
+                        </Border>
+                    </DataTemplate>
+                </ItemsControl.ItemTemplate>
+            </ItemsControl>
+        </ScrollViewer>
         </Grid>
         <Grid Grid.Row="2" Grid.Column="2">
             <Button Name="CancelBtn" Content="Cancel" Style="{StaticResource ResourceKey=ButtonStyle}" Click="CancelBtn_Click"/>
